@@ -3,7 +3,7 @@ from tkinter import ttk, messagebox
 
 def load_raw_data():
     try:
-        df = pd.read_csv(r'G:\laptrinhpython\TayDuaF1\dataset\f1.csv')
+        df = pd.read_csv('dataset/f1.csv')
         return df
     except FileNotFoundError:
         print("Error: File 'f1.csv' not found at the specified path.")
@@ -50,7 +50,7 @@ def add_data(driver, constructor, season):
 
         try:
             # Lưu lại toàn bộ dữ liệu vào file CSV
-            df.to_csv(r'G:\laptrinhpython\TayDuaF1\dataset\f1.csv', index=False)
+            df.to_csv('dataset/f1.csv', index=False)
             print(f"Đã thêm dữ liệu: {new_row}")
         except Exception as e:
             print(f"Gặp lỗi rồi: {e}")
@@ -62,7 +62,7 @@ def delete_data(driver, constructor, season):
     df = df[~((df["Driver"] == driver) & (df["Constructor"] == constructor) & (df["Season"] == int(season)))]
 
     try:
-        df.to_csv(r'G:\laptrinhpython\TayDuaF1\dataset\f1.csv', index=False)
+        df.to_csv('dataset/f1.csv', index=False)
         print(f"Đã thêm dữ liệu: {driver}")
         messagebox.showwarning("Thông báo",f"Bạn đã xóa dữ liệu của {driver} thành công")
     except Exception as e:
@@ -82,7 +82,7 @@ def edit_data(d, c, s, n_d, n_c, n_s):
     df.loc[edit_data, "Season"] = n_s
 
     try:
-        df.to_csv(r'G:\laptrinhpython\TayDuaF1\dataset\f1.csv', index=False)
+        df.to_csv('dataset/f1.csv', index=False)
     except Exception as e:
         messagebox.showerror("Lỗi", f"Lỗi khi ghi file CSV: {e}")
         
